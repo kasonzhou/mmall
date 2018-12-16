@@ -40,7 +40,7 @@ public class IFileServiceImpl implements IFileService {
             file.transferTo(targetFile);
             // 文件上传成功
             //todo 将targetFile上传到我们的FTP服务器上
-            FTPUtil.uploadFile(Lists.<File>newArrayList(targetFile));
+            FTPUtil.uploadFile(Lists.newArrayList(targetFile));
             //todo 上传完之后，删除upload下面的文件
             targetFile.delete();
         } catch (IOException e){

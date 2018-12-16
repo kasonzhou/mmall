@@ -17,6 +17,8 @@ import com.mmall.util.PropertiesUtil;
 import com.mmall.vo.ProductDetailVo;
 import com.mmall.vo.ProductListVo;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,8 @@ import java.util.List;
  */
 @Service("iProductService")
 public class IProductServiceImpl implements IProductService {
+
+    Logger logger = LoggerFactory.getLogger(IProductServiceImpl.class);
 
     @Autowired
     private ProductMapper productMapper;
@@ -161,6 +165,7 @@ public class IProductServiceImpl implements IProductService {
         if(StringUtils.isNoneBlank(productName)){
             productName = new StringBuilder().append("%").append(productName).append("%").toString();
         }
+        logger.info("sssssss" + productName);
         List<Product> productList = productMapper.selectByNameAndProductId(productName, productId);
         List<ProductListVo> productListVoList = Lists.newArrayList();
         for(Product productItem : productList){
@@ -208,7 +213,7 @@ public class IProductServiceImpl implements IProductService {
             categoryIdList = iCategoryService.selectCategoryAndChildrenById(category.getId()).getData();
         }
         if(StringUtils.isNoneBlank(keyword)){
-            keyword = new StringBuilder().append("%").append(keyword).append("%s").toString();
+            keyword = new StringBuilder().append("%").append(keyword).append("%").toString();
         }
 
         PageHelper.startPage(pageNum, pageSize);
