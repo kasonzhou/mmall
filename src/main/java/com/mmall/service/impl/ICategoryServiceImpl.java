@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Set;
@@ -18,6 +19,7 @@ import java.util.Set;
 /**
  * Created by Emily on 2018/12/12.
  */
+@Service("ICategoryService")
 public class ICategoryServiceImpl implements ICategoryService {
 
     private Logger logger = LoggerFactory.getLogger(ICategoryServiceImpl.class);
@@ -72,7 +74,7 @@ public class ICategoryServiceImpl implements ICategoryService {
      * @return
      */
     @Override
-    public ServerResponse selectCategoryAndChildrenById(Integer categoryId){
+    public ServerResponse<List<Integer>> selectCategoryAndChildrenById(Integer categoryId){
         Set<Category> categorySet = Sets.newHashSet();
         categorySet = findChildCategory(categorySet, categoryId);
 

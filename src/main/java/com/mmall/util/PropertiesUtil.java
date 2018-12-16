@@ -17,6 +17,8 @@ public class PropertiesUtil {
 
     private static Properties props;
 
+    // 静态代码块
+    // 静态代码块只执行一次
     static {
         String fileName = "mmall.properties";
         props = new Properties();
@@ -27,6 +29,7 @@ public class PropertiesUtil {
         }
     }
 
+    // 普通代码块
     public static String getProperty(String key){
         String value = props.getProperty(key.trim());
         if(StringUtils.isBlank(value)){
